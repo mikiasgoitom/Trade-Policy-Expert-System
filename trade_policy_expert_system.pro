@@ -7,14 +7,14 @@
 % Ethiopia basic information
 country(ethiopia).
 capital(ethiopia, addis_ababa).
-currency(ethiopia, 'Birr')
-continent(africa)
-region(east_africa)
-land_locked(true)
+currency(ethiopia, 'Birr').
+continent(africa).
+region(east_africa).
+land_locked(true).
 major_export(ethiopia, ['coffee', 'oilseeds', 'livestock', 'flowers', 'leather', 'electricity', 'foodstuffs']).
 major_import(ethiopia, ['machinery', 'vehicles', 'chemical_products', 'petrochemicals']).
-export_revenue(ethiopia, 4)
-import_expenditure(ethiopia, 5)
+export_revenue(ethiopia, 4).
+import_expenditure(ethiopia, 5).
 % ==========East African country facts============
 country(kenya).
 capital(kenya, nairobi).
@@ -23,7 +23,7 @@ continent(africa).
 region(east_africa).
 land_locked(false).
 trade_route(kenya, ethiopia, road).
-current_relation(kenya, 'excellent')
+current_relation(kenya, 'excellent').
 major_export(kenya, ['tea', 'coffee', 'flowers']).
 major_import(kenya, ['electricity','machinery', 'petrochemicals', 'chemicals']).
 sanction(kenya, 'no sanctions', false). 
@@ -35,7 +35,7 @@ continent(africa).
 region(east_africa).
 land_locked(false).
 trade_route(somalia, ethiopia, road).
-current_relation(somalia, 'bad')
+current_relation(somalia, 'bad').
 major_export(somalia, ['livestock', 'bananas', 'fish']).
 major_import(somalia, ['machinery', 'foodstuffs', 'fuel']).
 sanction(somalia, 'regional instability', true). 
@@ -46,8 +46,8 @@ currency(djibouti, 'Djiboutian Franc').
 continent(africa).
 region(east_africa).
 land_locked(false).
-trade_route(djibouti, ethiopia, port).  % Djibouti's port supplies Ethiopia.
-current_relation(djibouti, 'excellent')
+trade_route(djibouti, ethiopia, port).  
+current_relation(djibouti, 'excellent').
 major_export(djibouti, ['port_services', 'salt']).
 major_import(djibouti, ['electricity', 'machinery', 'foodstuffs', 'petrochemicals']).
 sanction(djibouti, 'no sanctions', false). 
@@ -317,11 +317,11 @@ member(ethiopia, afcfta).
 % ================ RULES =======================
 trade_partner(ethiopia, Country):-
     current_relation(Country, Relation),
-    member(Relation, ['neutral', 'good', 'excellent'])
+    member(Relation, ['neutral', 'good', 'excellent']).
 
 potential_trade_partner(ethiopia, Country) :-
     current_relation(Country, Relation),
-    member(Relation, [neutral, good, excellent]),
+    member(Relation, ['neutral', 'good', 'excellent']),
     trade_route(Country, ethiopia, _).
 
 sanctioned_trade_partner(ethiopia, Country) :-
@@ -338,11 +338,12 @@ trade_match(ethiopia, Country) :-
 
 neighbor_trade_partner(ethiopia, Neighbor) :-
     trade_route(Neighbor, ethiopia, _),
-    current_relation(Neighbor, good).
+    current_relation(Neighbor, good);
+    current_relation(Neighbor, excellent).
 
-hostile_country(ethiopia, Country):-
+hostile_country(Country):-
     current_relation(Country, Relation),
-    member(Relation, 'hostile')
+    member(Relation, hostile).
 
 trade_balance(ethiopia) :-
     export_revenue(ethiopia, TotalExportRevenue),
@@ -353,4 +354,4 @@ trade_balance(ethiopia) :-
     write('Ethiopia has balanced trade.')).
 
 under_sanctions(Country):-
-    sanction(Country, _, true)
+    sanction(Country, _, true).
