@@ -35,3 +35,40 @@ The Prolog facts are organized into the following categories:
    ```bash
    git clone https://github.com/your-username/trade-policy-expert-system.git
    cd trade-policy-expert-system
+   ```
+2.Load the Prolog file into the SWI-Prolog environment:
+```bash
+?- consult('trade_policy_expert_system.pl').
+Query the system for trade-related information. Example queries:
+```
+3. To view Ethiopia's major exports:
+```bash
+?- major_export(ethiopia, Exports).
+```
+4. To check the current trade relations between Ethiopia and another country:
+```bash
+?- current_relation(ethiopia, Country, Relation).
+```
+5. To calculate Ethiopia's trade balance:
+```bash
+?- trade_balance(ethiopia).
+```
+### Example Queries
+Here are some example queries you can run:
+
+Get trade relations between Ethiopia and Somalia:
+```bash
+?- current_relation(ethiopia, somalia, Relation).
+```
+Get the major exports of Ethiopia:
+```bash
+?- major_export(ethiopia, Exports).
+```
+Check Ethiopia's trade balance:
+```bash
+?- trade_balance(ethiopia).
+```
+Get the trade routes between Ethiopia and Kenya:
+```bash
+?- trade_route(ethiopia, kenya, Route).
+```
